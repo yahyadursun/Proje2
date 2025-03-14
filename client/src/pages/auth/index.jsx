@@ -9,30 +9,55 @@ import {
 import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
+import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
+import { SIGNUP_ROUTE } from "../../utils/constants";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const validateSignup = () => {
+    if (!email.length) {
+      toast.error("Email is required!");
+      return false;
+    }
+    if (!password.length) {
+      toast.error("Password is required!");
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      toast.error("Password and Confirm Password are not same !!");
+      return false;
+    }
+    return true;
+  };
+
   const handleLogin = async () => {};
-  const handleSignup = async () => {};
+  const handleSignup = async () => {
+    if (validateSignup()) {
+      const response = await apiClient.post(SIGNUP_ROUTE, { email, password });
+      console.log({ response });
+    }
+  };
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
       <div className="h-[80vh] bg-white border-2 border-white text-opacity-90 shadow-2xl w-[80vw] md:w-[90vw] lg:w-[70vw] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2">
         <div className="flex flex-col gap-10 items-center justify-center">
           <div className="flex items-center justify-center flex-col">
             <div className="flex items-center justify-center">
-              <h1 className="text-5xl font-bold md:text-6xl ml-5">Hoşgeldiniz</h1>
+              <h1 className="text-5xl font-bold md:text-6xl ml-5">
+                Hoşgeldiniz
+              </h1>
               <img
                 src={Victory}
                 alt="Victory emoji"
                 className="h-[100px]"
               ></img>
             </div>
-            <p className="font-medium text-center">
-              Burada olmak harika
-            </p>
+            <p className="font-medium text-center">Burada olmak harika</p>
           </div>
           <div className="flex items-center justify-center w-full">
             <Tabs className={"w-3/4"}>
@@ -65,7 +90,10 @@ const Auth = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button className={"rounded-full p-6"} onClick={handleLogin}>
+                <Button
+                  className={"rounded-full p-6 cursor-pointer"}
+                  onClick={handleLogin}
+                >
                   Login
                 </Button>
               </TabsContent>
@@ -94,7 +122,10 @@ const Auth = () => {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                <Button className={"rounded-full p-6"} onClick={handleSignup}>
+                <Button
+                  className={"rounded-full p-6 cursor-pointer"}
+                  onClick={handleSignup}
+                >
                   SignUp
                 </Button>
               </TabsContent>
