@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
-    "dev":"nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "type": "module",
   "keywords": [],
@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "all": "^0.0.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
