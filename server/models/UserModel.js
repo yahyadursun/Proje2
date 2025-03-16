@@ -1,4 +1,4 @@
-import { genSalt } from "bcrypt";
+
 import mongoose from "mongoose";
 import {genSalt , hash} from "bcrypt";
 

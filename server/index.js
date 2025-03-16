@@ -28,8 +28,7 @@ const server = app.listen(port, () => {
 });
 mongoose
   .connect(databaseURL)
-  .then(() =>
-    console
-      .log("DB Connection Succesfull")
-      .catch((err) => console.log(err.message))
-  );
+  .then(() => {
+    console.log("DB Connection Succesfull");})
+      .catch((err) => console.error(err.message))
+  ;
