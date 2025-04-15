@@ -5,16 +5,16 @@ import {genSalt , hash} from "bcrypt";
 const userSchema = new mongoose.Schema({
     email:{
         type:String,
-        required:[true,"Email is required!"],
+       // required:[true,"Email is required!"],
         unique: true,
     },
     password:{
         type:String,
-        required:[true,"Password is required!"],
+       // required:[true,"Password is required!"],
     },
     firstName:{
         type:String,
-        required: [ true,"Password is required!"],
+        //required: [ true,"First name is required!"],
     },
     lastName:{
         type: String,
