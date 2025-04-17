@@ -18,7 +18,7 @@ import { useAppStore } from "../../store/index.js";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const {setUserInfo}= useAppStore()
+  const {setUserInfo}= useAppStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -54,13 +54,13 @@ const Auth = () => {
 
   const handleLogin = async () => {
     if(validateLogin()) {
-      const response = await apiClient.post("/api/auth/login",{email,password},{withCredentials:true})
+      const response = await apiClient.post(LOGIN_ROUTE,{email,password},{withCredentials:true})
       if(response.data.user.id){
         setUserInfo(response.data.user);
-        if(response.data.user.profileSetup) navigate("/chat");
-        else navigate("profile");
+        if(response.data.user.profileSetup) {navigate("/chat");}
+        else {navigate("profile");}
       }
-      console.log({ response });
+      console.log( {response});
     }
   };
   const handleSignup = async () => {
