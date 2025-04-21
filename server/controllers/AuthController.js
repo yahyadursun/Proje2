@@ -58,13 +58,15 @@ export const login = async (request, response, next) => {
     });
 
     return response.status(200).json({
-      id: user.id,
-      email: user.email,
-      profileSetup: user.profileSetup,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      image: user.image,
-      color: user.color,
+      user: {
+        id: user.id,
+        email: user.email,
+        profileSetup: user.profileSetup,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        image: user.image,
+        color: user.color,
+      },
     });
   } catch (error) {
     console.log({ error });
@@ -129,22 +131,34 @@ export const updateProfile = async (request, response, next) => {
 };
 export const addProfileImage = async (request, response, next) => {
   try {
-    if (!request.file) {
+    const file = request.file;
+    if (!file) {
       return response.status(400).send("File is required");
     }
 
-    const date = Date.now();
-    let fileName = "upload/profiles/" + date + request.file.originalName;
-    renameSync(request.file.path, fileName);
+    const fileExt = path.extname(file.originalname);
+    if (!fileExt) {
+      return response.status(400).send("File must have a valid extension");
+    }
 
-    const updatedUser = await User.findOneAndUpdate(
+    const newFileName = `${Date.now()}${fileExt}`;
+    const newPath = path.join("uploads", "profiles", newFileName);
+
+    // Klasör yoksa oluştur
+    const dirPath = path.join("uploads", "profiles");
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+    }
+
+    renameSync(file.path, newPath);
+
+    const updatedUser = await User.findByIdAndUpdate(
       request.userId,
-      { image: fileName },
+      { image: newPath },
       { new: true, runValidators: true }
     );
 
     return response.status(200).json({
-
       image: updatedUser.image,
     });
   } catch (error) {
@@ -156,30 +170,14 @@ export const addProfileImage = async (request, response, next) => {
 export const removeProfileImage = async (request, response, next) => {
   try {
     const { userId } = request;
-    const { firstName, lastName, color } = request.body;
-    if (!firstName || !lastName) {
-      return response
-        .status(400)
-        .send("First-Last Name and color are required");
+    const user = await User.findById(userId);
+    if (!user) {
+      return response.status(404).send("User not found");
     }
+    user.image = null;
+    await user.save();
 
-    const userData = await User.findByIdAndUpdate(
-      userId,
-      { firstName, lastName, color, profileSetup: true },
-      { new: true, runValidators: true }
-    );
-
-    return response.status(200).json({
-      user: {
-        id: userData.id,
-        email: userData.email,
-        profileSetup: userData.profileSetup,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        image: userData.image,
-        color: userData.color,
-      },
-    });
+    return response.status(200).msg("Profile image removed successfully");
   } catch (error) {
     console.log({ error });
     return response.status(500).send("Internal Server Error");
