@@ -9,9 +9,28 @@ import { useAppStore } from "@/store";
 import { getColor } from "@/lib/utils";
 import { HOST } from "@/utils/constants";
 import { FiEdit2 } from "react-icons/fi";
+import {  IoPowerSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { LOGOUT_ROUTE } from "../../../../../../utils/constants";
+import apiClient from "@/lib/api-client.js";
 
 const ProfileInfo = () => {
-  const { userInfo } = useAppStore();
+  const { userInfo, setUserInfo } = useAppStore();
+  const navigate = useNavigate();
+
+  const logOut = async () => {
+    try {
+      const response = await apiClient.post(LOGOUT_ROUTE, {}, { withCredentials: true });
+      if (response.status === 200) {
+        navigate("/auth");
+        setUserInfo(null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   return (
     <div className="absolute bottom-0 h-16 flex items-center justify-between px-10 w-full bg-[#2a2b33]">
       <div className="flex hap-3 items-center justify-center">
@@ -29,9 +48,12 @@ const ProfileInfo = () => {
                   userInfo.color
                 )}`}
               >
-                {userInfo.firstName
-                  ? userInfo.firstName.split(" ").shift()
-                  : userInfo.email.split(" ").shift()}
+                {userInfo.firstName && userInfo.firstName.trim() !== "" // firstName'in var olup olmadığını kontrol et
+  ? userInfo.firstName.split(" ").shift()
+  : userInfo.email && userInfo.email.trim() !== "" // Eğer firstName yoksa, email kontrol et
+  ? userInfo.email.split(" ").shift()
+  : ""}
+
               </div>
             )}
           </Avatar>
@@ -46,10 +68,24 @@ const ProfileInfo = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <FiEdit2 className="text-purple-500 text-xl font-medium" />
+              <FiEdit2 className="text-purple-500 text-xl font-medium" 
+              onClick={()=> navigate("/profile")}
+              />
             </TooltipTrigger>
             <TooltipContent className="bg-[#1c1b1e] border-none text-white">
               <p>Profil düzenle</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <IoPowerSharp className="text-red-500 text-xl font-medium" 
+              onClick={logOut}
+              />
+            </TooltipTrigger>
+            <TooltipContent className="bg-[#1c1b1e] border-none text-white">
+              <p>Çıkış</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

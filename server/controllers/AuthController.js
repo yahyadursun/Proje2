@@ -2,6 +2,9 @@ import { compare } from "bcrypt";
 import User from "../models/UserModel.js";
 import jwt from "jsonwebtoken";
 import { renameSync, unlinkSync } from "fs";
+import path from "path";
+import fs from "fs";
+
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 const createToken = (email, userId) => {
   return jwt.sign({ email, userId }, process.env.JWT_KEY, {
@@ -126,19 +129,19 @@ export const updateProfile = async (request, response, next) => {
     });
   } catch (error) {
     console.log({ error });
-    return response.status(500).send("Internal Server Error");
+    return response.status(500).json({message : "Internal Server Error"});
   }
 };
 export const addProfileImage = async (request, response, next) => {
   try {
     const file = request.file;
     if (!file) {
-      return response.status(400).send("File is required");
+      return response.status(400).json({message : "Internal Server Error"});
     }
 
     const fileExt = path.extname(file.originalname);
     if (!fileExt) {
-      return response.status(400).send("File must have a valid extension");
+      return response.status(400).json({message : "Internal Server Error"});
     }
 
     const newFileName = `${Date.now()}${fileExt}`;
@@ -163,7 +166,7 @@ export const addProfileImage = async (request, response, next) => {
     });
   } catch (error) {
     console.log({ error });
-    return response.status(500).send("Internal Server Error");
+    return response.status(500).json({message : "Internal Server Error"});
   }
 };
 
@@ -172,14 +175,24 @@ export const removeProfileImage = async (request, response, next) => {
     const { userId } = request;
     const user = await User.findById(userId);
     if (!user) {
-      return response.status(404).send("User not found");
+      return response.status(404).json({message : "Internal Server Error"});
     }
     user.image = null;
     await user.save();
 
-    return response.status(200).msg("Profile image removed successfully");
+    return response.status(200).json({message : "Internal Server Error"});
   } catch (error) {
     console.log({ error });
-    return response.status(500).send("Internal Server Error");
+    return response.status(500).json({message : "Internal Server Error"});
+  }
+};
+
+export const logout = async (request, response, next) => {
+  try {
+    response.cookie("jwt",{ maxAge:1 ,secure: true, sameSite: "None" });
+    return response.status(200).json({message : "Çikiş Başari!"});
+  } catch (error) {
+    console.log({ error });
+    return response.status(500).json({message : "Internal Server Error"});
   }
 };

@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppStore } from "../../store/index.js";
 
 
+
 const Auth = () => {
   const navigate = useNavigate();
   const {setUserInfo}= useAppStore();

@@ -15,6 +15,7 @@ import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import { toast, Toaster } from "sonner";
 import { UPDATE_PROFILE_ROUTE } from "../../utils/constants";
+import { HOST } from "@/utils/constants";
 
 const Profile = () => {
   const navigate = useNavigate();
