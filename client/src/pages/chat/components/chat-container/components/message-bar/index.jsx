@@ -3,11 +3,16 @@ import { IoSend } from "react-icons/io5";
 import { GrAttachment } from "react-icons/gr";
 import { RiEmojiStickerLine } from "react-icons/ri";
 import EmojiPicker from "emoji-picker-react";
+import { useAppStore } from "@/store";
+import { useSocket } from "@/context/SocketContext";
+
 const MessageBar = () => {
-  const emojiRef = useRef(null);
+  const emojiRef = useRef();
+  const socket = useSocket();
+  const { selectedChatData, selectedChatType, userInfo } = useAppStore();
   const [message, setMessage] = useState("");
   const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
-  
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (emojiRef.current && !emojiRef.current.contains(event.target)) {
@@ -18,13 +23,21 @@ const MessageBar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  },[emojiRef])
+  }, [emojiRef]);
 
   const handleAddEmoji = (emoji) => {
     setMessage((msg) => msg + emoji.emoji);
   };
-  const handleSendMessage = () => {
-    // TODO: send message
+  const handleSendMessage = async () => {
+    if (selectedChatType === "contact") {
+      socket.emit("sendMessage", {
+        sender: userInfo.id,
+        content: message,
+        recipient: selectedChatData._id,
+        messageType: "text",
+        fileUrl: undefined,
+      });
+    }
   };
 
   return (
@@ -50,7 +63,7 @@ const MessageBar = () => {
           >
             <RiEmojiStickerLine className="text-2xl" />
           </button>
-          <div className="absolute bottom-16 right-0 "ref ={emojiRef}>
+          <div className="absolute bottom-16 right-0 " ref={emojiRef}>
             <EmojiPicker
               theme="dark"
               open={emojiPickerOpen}
