@@ -17,20 +17,22 @@ const messageSchema = new mongoose.Schema({
   },
   content: {
     type: String,
-    required: function () {
-      return this.messageType === "text";
+    validate: {
+      validator: function (v) {
+        return this.messageType !== "text" || typeof v === "string";
+      },
+      message: "Text message must have a content string.",
     },
   },
-  fileUrl:{
+  fileUrl: {
     type: String,
     required: function () {
       return this.messageType === "file";
     },
   },
-  timestamp:{
-    type:Date,
-    default:Date.now,
-
+  timestamp: {
+    type: Date,
+    default: Date.now,
   },
 });
 
