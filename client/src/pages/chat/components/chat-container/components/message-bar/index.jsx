@@ -7,6 +7,7 @@ import { useAppStore } from "@/store";
 import { useSocket } from "@/context/SocketContext";
 import { UPLOAD_FILE_ROUTE } from "@/utils/constants";
 import apiClient from "@/lib/api-client.js";
+import { channel } from "diagnostics_channel";
 
 const MessageBar = () => {
   const emojiRef = useRef();
@@ -46,7 +47,16 @@ const MessageBar = () => {
         messageType: "text",
         fileUrl: undefined,
       });
+    } else if (selectedChatType === "channel"){
+      socket.emit("send-channel-message",{
+        sender: userInfo.id,
+        content: message,
+        messageType: "text",
+        fileUrl: undefined,
+        channelId: selectedChatData._id,
+      })
     }
+    setMessage("");
   };
 
   const handleAttachmentClick = () => {
@@ -79,6 +89,14 @@ const MessageBar = () => {
               messageType: "file",
               fileUrl: response.data.filePath,
             });
+          } else if (selectedChatType === "channel"){
+            socket.emit("send-channel-message",{
+              sender: userInfo.id,
+              content: undefined,
+              messageType: "file",
+              fileUrl: response.data.filePath,
+              channelId: selectedChatData._id,
+            })
           }
         }
       }
