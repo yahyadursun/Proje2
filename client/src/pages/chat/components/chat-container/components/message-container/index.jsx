@@ -120,9 +120,9 @@ const MessageContainer = () => {
         <div
           className={`${
             message.sender !== selectedChatData._id
-              ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/50"
-              : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
-          }border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+              ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
+              : "bg-white/10 text-white border-white/20"
+          }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
         >
           {message.content}
         </div>
@@ -131,13 +131,13 @@ const MessageContainer = () => {
         <div
           className={`${
             message.sender !== selectedChatData._id
-              ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/50"
-              : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
-          }border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+              ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
+              : "bg-white/10 text-white border-white/20"
+          }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
         >
           {checkIfImage(message.fileUrl) ? (
             <div
-              className="cursor-pointer "
+              className="cursor-pointer"
               onClick={() => {
                 setShowImage(true);
                 setImageURL(message.fileUrl);
@@ -147,16 +147,17 @@ const MessageContainer = () => {
                 src={`${HOST}/${message.fileUrl}`}
                 height={300}
                 width={300}
+                className="rounded-lg"
               />
             </div>
           ) : (
             <div className="flex items-center justify-center gap-4">
-              <span className="text-white/8 text-3xl bg-black/20 rounded-full p-3">
+              <span className="text-white/90 text-3xl bg-white/10 rounded-full p-3">
                 <MdFolderZip />
               </span>
-              <span>{message.fileUrl.split("/").pop()}</span>
+              <span className="text-white/90">{message.fileUrl.split("/").pop()}</span>
               <span
-                className="bg-black/20 p-3 text-2xl rounded-full hover:bg-black/50 cursor-pointer transition-all duration-300"
+                className="bg-white/10 p-3 text-2xl rounded-full hover:bg-white/20 cursor-pointer transition-all duration-300"
                 onClick={() => downloadFile(message.fileUrl)}
               >
                 <IoMdArrowRoundDown />
@@ -182,9 +183,9 @@ const MessageContainer = () => {
         <div
           className={`${
             message.sender._id === userInfo.id
-              ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/50"
-              : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
-          }border inline-block p-4 rounded my-1 max-w-[50%] break-words ml-9`}
+              ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
+              : "bg-white/10 text-white border-white/20"
+          }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
         >
           {message.content}
         </div>
@@ -193,13 +194,13 @@ const MessageContainer = () => {
         <div
           className={`${
             message.sender._id === userInfo._id
-              ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/50"
-              : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
-          }border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+              ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
+              : "bg-white/10 text-white border-white/20"
+          }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
         >
           {checkIfImage(message.fileUrl) ? (
             <div
-              className="cursor-pointer "
+              className="cursor-pointer"
               onClick={() => {
                 setShowImage(true);
                 setImageURL(message.fileUrl);
@@ -209,16 +210,17 @@ const MessageContainer = () => {
                 src={`${HOST}/${message.fileUrl}`}
                 height={300}
                 width={300}
+                className="rounded-lg"
               />
             </div>
           ) : (
             <div className="flex items-center justify-center gap-4">
-              <span className="text-white/8 text-3xl bg-black/20 rounded-full p-3">
+              <span className="text-white/90 text-3xl bg-white/10 rounded-full p-3">
                 <MdFolderZip />
               </span>
-              <span>{message.fileUrl.split("/").pop()}</span>
+              <span className="text-white/90">{message.fileUrl.split("/").pop()}</span>
               <span
-                className="bg-black/20 p-3 text-2xl rounded-full hover:bg-black/50 cursor-pointer transition-all duration-300"
+                className="bg-white/10 p-3 text-2xl rounded-full hover:bg-white/20 cursor-pointer transition-all duration-300"
                 onClick={() => downloadFile(message.fileUrl)}
               >
                 <IoMdArrowRoundDown />

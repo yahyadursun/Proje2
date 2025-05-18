@@ -107,17 +107,22 @@ const MessageBar = () => {
   };
 
   return (
-    <div className="h-[10vh] bg-[#1c1d25] flex justify-center items-center px-8 mb-6">
-      <div className="flex-1 flex bg-[#2a2b33] rounded-md items-center gap-4 px-4 py-2">
+    <div className="h-[12vh] bg-gradient-to-r from-fuchsia-500/10 to-purple-600/10 backdrop-blur-sm border-t border-white/10 flex justify-center items-center px-4 py-4">
+      <div className="flex-1 flex bg-white/5 backdrop-blur-sm rounded-full items-center gap-4 px-6 py-3 w-full max-w-[90%]">
         <input
           type="text"
-          className="flex-1 bg-transparent text-white placeholder-neutral-400 p-2 focus:outline-none"
+          className="flex-1 bg-transparent text-fuchsia-100 placeholder-fuchsia-300/40 p-4 focus:outline-none text-lg"
           placeholder="Mesajınızı yazın..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSendMessage();
+            }
+          }}
         />
         <button
-          className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all"
+          className="text-fuchsia-200 hover:text-fuchsia-300 focus:border-none focus:outline-none duration-300 transition-all p-3"
           onClick={handleAttachmentClick}
         >
           <GrAttachment className="text-2xl" />
@@ -130,23 +135,23 @@ const MessageBar = () => {
         />
         <div className="relative">
           <button
-            className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all"
+            className="text-fuchsia-200 hover:text-fuchsia-300 focus:border-none focus:outline-none duration-300 transition-all p-3"
             onClick={() => setEmojiPickerOpen(true)}
           >
             <RiEmojiStickerLine className="text-2xl" />
           </button>
-          <div className="absolute bottom-16 right-0 " ref={emojiRef}>
+          <div className="absolute bottom-16 right-0" ref={emojiRef}>
             <EmojiPicker
               theme="dark"
               open={emojiPickerOpen}
               onEmojiClick={handleAddEmoji}
               autofocusSearch={false}
-            ></EmojiPicker>
+            />
           </div>
         </div>
       </div>
       <button
-        className="bg-[#8417ff] rounded-md flex items-center justify-center p-5 focus:border-none hover:bg-[#741bda] focus:bg-[#741bda] focus:outline-none focus:text-white duration-300 transition-all"
+        className="h-16 w-16 rounded-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white shadow-lg shadow-fuchsia-500/20 flex items-center justify-center focus:outline-none duration-300 transition-all ml-4"
         onClick={handleSendMessage}
       >
         <IoSend className="text-2xl" />
