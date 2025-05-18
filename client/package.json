@@ -36,6 +36,7 @@
     "react-router-dom": "^7.3.0",
     "react-split": "^2.0.14",
     "react-toastify": "^11.0.5",
+    "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
     "socketio": "^1.0.0",
     "sonner": "^2.0.3",

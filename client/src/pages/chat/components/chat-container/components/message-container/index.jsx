@@ -9,6 +9,7 @@ import { IoMdArrowRoundDown } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { useState } from "react";
 import { AvatarFallback } from "@radix-ui/react-avatar";
+import { GET_CHANNEL_MESSAGES } from "../../../../../../utils/constants";
 
 const MessageContainer = () => {
   const scrollRef = useRef();
@@ -38,8 +39,21 @@ const MessageContainer = () => {
         console.log(error);
       }
     };
+    const getChannelMessages =  async () => {
+      try {
+        const response = await apiClient.get(
+          `${GET_CHANNEL_MESSAGES}/${selectedChatData._id}`,
+          { withCredentials: true }
+        );
+        if (response.data.messages)
+          setSelectedChatMessages(response.data.messages);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     if (selectedChatData._id) {
       if (selectedChatType === "contact") getMessages();
+      else if ( selectedChatType ==="channel") getChannelMessages();
     }
   }, [selectedChatData, selectedChatType, setSelectedChatMessages]);
   useEffect(() => {
@@ -170,9 +184,47 @@ const MessageContainer = () => {
             message.sender._id === userInfo.id
               ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/50"
               : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
-          }border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+          }border inline-block p-4 rounded my-1 max-w-[50%] break-words ml-9`}
         >
           {message.content}
+        </div>
+      )}
+      {message.messageType === "file" && (
+        <div
+          className={`${
+            message.sender._id === userInfo._id
+              ? "bg-[#8417ff]/5 text-[#8417ff]/90 border-[#8417ff]/50"
+              : "bg-[#2a2b33]/5 text-white/80 border-[#ffffff]/20"
+          }border inline-block p-4 rounded my-1 max-w-[50%] break-words`}
+        >
+          {checkIfImage(message.fileUrl) ? (
+            <div
+              className="cursor-pointer "
+              onClick={() => {
+                setShowImage(true);
+                setImageURL(message.fileUrl);
+              }}
+            >
+              <img
+                src={`${HOST}/${message.fileUrl}`}
+                height={300}
+                width={300}
+              />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-4">
+              <span className="text-white/8 text-3xl bg-black/20 rounded-full p-3">
+                <MdFolderZip />
+              </span>
+              <span>{message.fileUrl.split("/").pop()}</span>
+              <span
+                className="bg-black/20 p-3 text-2xl rounded-full hover:bg-black/50 cursor-pointer transition-all duration-300"
+                onClick={() => downloadFile(message.fileUrl)}
+              >
+                <IoMdArrowRoundDown />
+              </span>
+            </div>
+          )}
         </div>
       )}
       {
@@ -196,7 +248,7 @@ const MessageContainer = () => {
               </Avatar>
               <span className="text-sm text-white/60">{`${message.sender.firstName} ${message.sender.lastName}`}</span>
               <span classname =" text-xs text-white/60"> { moment(message.timestamp).format("LT")}</span>
-        </div>: (<span classname =" text-xs text-white/60 mt-1"> { moment(message.timestamp).format("LT")}</span>)
+        </div>: (<div classname =" text-xs text-white/60 mt-1"> { moment(message.timestamp).format("LT")}</div>)
       }
       </div>
     );
