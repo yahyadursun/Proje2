@@ -1,5 +1,3 @@
-import { channel } from "diagnostics_channel";
-
 export const createChatSlice = (set, get) => ({
   selectedChatType: undefined,
   selectedChatData: undefined,
@@ -71,12 +69,22 @@ export const createChatSlice = (set, get) => ({
         : message.sender._id;
     const fromData = message.sender._id === userId ? message.recipient : message.sender;
     const dmContacts = get().directMessagesContacts;
-    const data = dmContacts.find((contact) => contact.id === fromId);
-    if(index !== -1 && index!== undefined){
-      dmContacts.splice(index,1);
-    dmContacts.unshift(data);    }else{
+    
+    // Kontağın zaten listede olup olmadığını kontrol et
+    const existingContactIndex = dmContacts.findIndex(
+      (contact) => contact._id === fromId || contact.id === fromId
+    );
+
+    if (existingContactIndex !== -1) {
+      // Eğer kontak zaten varsa, onu listenin başına taşı
+      const existingContact = dmContacts[existingContactIndex];
+      dmContacts.splice(existingContactIndex, 1);
+      dmContacts.unshift(existingContact);
+    } else {
+      // Eğer kontak yoksa, yeni kontağı ekle
       dmContacts.unshift(fromData);
     }
-    set({directMessagesContacts: dmContacts});
+    
+    set({ directMessagesContacts: dmContacts });
   },
 });
