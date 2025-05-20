@@ -88,6 +88,7 @@ const setupSocket = (server) => {
       console.log("User ID not provided during connection");
     }
     socket.on("sendMessage", (message) => sendMessage(message));
+    socket.on("send-channel-message",sendChannelMessage);
     socket.on("disconnect", () => disconnect(socket));
   });
 };

@@ -8,8 +8,10 @@ import { MdFolderZip } from "react-icons/md";
 import { IoMdArrowRoundDown } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { useState } from "react";
-import { AvatarFallback } from "@radix-ui/react-avatar";
-import { GET_CHANNEL_MESSAGES } from "../../../../../../utils/constants";
+import { Avatar, AvatarImage,AvatarFallback } from "@radix-ui/react-avatar";
+import { GET_CHANNEL_MESSAGES } from "@/utils/constants";
+import { getColor } from "@/lib/utils";
+
 
 const MessageContainer = () => {
   const scrollRef = useRef();
@@ -39,7 +41,7 @@ const MessageContainer = () => {
         console.log(error);
       }
     };
-    const getChannelMessages =  async () => {
+    const getChannelMessages = async () => {
       try {
         const response = await apiClient.get(
           `${GET_CHANNEL_MESSAGES}/${selectedChatData._id}`,
@@ -53,8 +55,9 @@ const MessageContainer = () => {
     };
     if (selectedChatData._id) {
       if (selectedChatType === "contact") getMessages();
-      else if ( selectedChatType ==="channel") getChannelMessages();
+      else if (selectedChatType === "channel") getChannelMessages();
     }
+    console.log("channelId gönderilen:", selectedChatData._id);
   }, [selectedChatData, selectedChatType, setSelectedChatMessages]);
   useEffect(() => {
     if (scrollRef.current) {
@@ -155,7 +158,9 @@ const MessageContainer = () => {
               <span className="text-white/90 text-3xl bg-white/10 rounded-full p-3">
                 <MdFolderZip />
               </span>
-              <span className="text-white/90">{message.fileUrl.split("/").pop()}</span>
+              <span className="text-white/90">
+                {message.fileUrl.split("/").pop()}
+              </span>
               <span
                 className="bg-white/10 p-3 text-2xl rounded-full hover:bg-white/20 cursor-pointer transition-all duration-300"
                 onClick={() => downloadFile(message.fileUrl)}
@@ -178,80 +183,91 @@ const MessageContainer = () => {
         className={`mt-5 ${
           message.sender._id !== userInfo.id ? "text-left" : "text-right"
         }`}
-      > 
-      {message.messageType === "text" && (
-        <div
-          className={`${
-            message.sender._id === userInfo.id
-              ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
-              : "bg-white/10 text-white border-white/20"
-          }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
-        >
-          {message.content}
-        </div>
-      )}
-      {message.messageType === "file" && (
-        <div
-          className={`${
-            message.sender._id === userInfo._id
-              ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
-              : "bg-white/10 text-white border-white/20"
-          }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
-        >
-          {checkIfImage(message.fileUrl) ? (
-            <div
-              className="cursor-pointer"
-              onClick={() => {
-                setShowImage(true);
-                setImageURL(message.fileUrl);
-              }}
-            >
-              <img
-                src={`${HOST}/${message.fileUrl}`}
-                height={300}
-                width={300}
-                className="rounded-lg"
-              />
-            </div>
-          ) : (
-            <div className="flex items-center justify-center gap-4">
-              <span className="text-white/90 text-3xl bg-white/10 rounded-full p-3">
-                <MdFolderZip />
-              </span>
-              <span className="text-white/90">{message.fileUrl.split("/").pop()}</span>
-              <span
-                className="bg-white/10 p-3 text-2xl rounded-full hover:bg-white/20 cursor-pointer transition-all duration-300"
-                onClick={() => downloadFile(message.fileUrl)}
+      >
+        {message.messageType === "text" && (
+          <div
+            className={`${
+              message.sender._id !== userInfo.id
+                ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
+                : "bg-white/10 text-white border-white/20"
+            }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
+          >
+            {message.content}
+          </div>
+        )}
+        {message.messageType === "file" && (
+          <div
+            className={`${
+              message.sender._id === userInfo._id
+                ? "bg-fuchsia-500/20 text-fuchsia-50 border-fuchsia-500/30"
+                : "bg-white/10 text-white border-white/20"
+            }border inline-block p-4 rounded-2xl my-1 max-w-[50%] break-words shadow-lg backdrop-blur-sm`}
+          >
+            {checkIfImage(message.fileUrl) ? (
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  setShowImage(true);
+                  setImageURL(message.fileUrl);
+                }}
               >
-                <IoMdArrowRoundDown />
-              </span>
-            </div>
-          )}
-        </div>
-      )}
-      {
-        message.sender._id !== userInfo.id ? <div className="flex items-center justify-start gap-3 ">
-          <Avatar className="h-8 w-8 md:h-48 md:w-48 rounded-full overflow-hidden">
-                {message.sender.image && (
-                  <AvatarImage
-                    src={`${HOST}/${message.sender.image}`}
-                    alt="profile"
-                    className="object-cover w-full h-full bg-black"
-                  />
-                ) }
-                  <AvatarFallback
-                    className={`uppercase h-8 w-8 text-lg  flex items-center justify-center ${getColor(
-                      message.sender.color
-                    )}`}
-                  >
-                   { message.sender.firstName ? message.sender.firstName.split(" ").shift() : message.sender.email.split(" ".shift())}
-                     
-                  </AvatarFallback>
-              </Avatar>
-              <span className="text-sm text-white/60">{`${message.sender.firstName} ${message.sender.lastName}`}</span>
-              <span classname =" text-xs text-white/60"> { moment(message.timestamp).format("LT")}</span>
-        </div>: (<div classname =" text-xs text-white/60 mt-1"> { moment(message.timestamp).format("LT")}</div>)
-      }
+                <img
+                  src={`${HOST}/${message.fileUrl}`}
+                  height={300}
+                  width={300}
+                  className="rounded-lg"
+                />
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-4">
+                <span className="text-white/90 text-3xl bg-white/10 rounded-full p-3">
+                  <MdFolderZip />
+                </span>
+                <span className="text-white/90">
+                  {message.fileUrl.split("/").pop()}
+                </span>
+                <span
+                  className="bg-white/10 p-3 text-2xl rounded-full hover:bg-white/20 cursor-pointer transition-all duration-300"
+                  onClick={() => downloadFile(message.fileUrl)}
+                >
+                  <IoMdArrowRoundDown />
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+        {message.sender._id !== userInfo.id ? (
+          <div className="flex items-center justify-start gap-3 ">
+            <Avatar className="h-8 w-8 md:h-8 md:w-8 rounded-full overflow-hidden">
+              {message.sender.image && (
+                <AvatarImage
+                  src={`${HOST}/${message.sender.image}`}
+                  alt="profile"
+                  className="object-cover w-full h-full bg-black"
+                />
+              )}
+              <AvatarFallback
+                className={`uppercase h-8 w-8 text-lg  flex items-center justify-center ${getColor(
+                  message.sender.color
+                )}`}
+              >
+                {message.sender.firstName
+                  ? message.sender.firstName.split(" ").shift()
+                  : message.sender.email.split(" ".shift())}
+              </AvatarFallback>
+            </Avatar>
+            <span className="text-sm text-white/60">{`${message.sender.firstName} ${message.sender.lastName}`}</span>
+            <span className=" text-xs text-white/60">
+              {" "}
+              {moment(message.timestamp).format("LT")}
+            </span>
+          </div>
+        ) : (
+          <div className=" text-xs text-white/60 mt-1">
+            {" "}
+            {moment(message.timestamp).format("LT")}
+          </div>
+        )}
       </div>
     );
   };

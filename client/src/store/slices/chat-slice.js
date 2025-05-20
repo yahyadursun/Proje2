@@ -22,7 +22,7 @@ export const createChatSlice = (set, get) => ({
     set({ directMessagesContacts }),
   addChannel: (channel) => {
     const channels = get().channels;
-    set({ channels: [...channels, channel] });
+    set({ channels: [channel, ...channels] });
   },
   closeChat: () =>
     set({
@@ -67,9 +67,10 @@ export const createChatSlice = (set, get) => ({
       message.sender._id === userId
         ? message.recipient._id
         : message.sender._id;
-    const fromData = message.sender._id === userId ? message.recipient : message.sender;
+    const fromData =
+      message.sender._id === userId ? message.recipient : message.sender;
     const dmContacts = get().directMessagesContacts;
-    
+
     // Kontağın zaten listede olup olmadığını kontrol et
     const existingContactIndex = dmContacts.findIndex(
       (contact) => contact._id === fromId || contact.id === fromId
@@ -84,7 +85,7 @@ export const createChatSlice = (set, get) => ({
       // Eğer kontak yoksa, yeni kontağı ekle
       dmContacts.unshift(fromData);
     }
-    
+
     set({ directMessagesContacts: dmContacts });
   },
 });
