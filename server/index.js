@@ -26,6 +26,7 @@ app.use(
 app.use("/uploads/profiles", express.static("uploads/profiles"));
 app.use("/uploads/files", express.static("uploads/files"));
 app.use("/uploads/channels", express.static("uploads/channels"));
+app.use("/uploads/voices", express.static("uploads/voices"));
 app.use(cookieParser());
 app.use(express.json());
 

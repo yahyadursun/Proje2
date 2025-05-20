@@ -39,29 +39,35 @@ const ContactsContainer = () => {
   }, [setChannels, setDirectMessagesContacts]);
 
   return (
-    <div className="relative md:w-[35vw] lg:w-[30vw] xl:w-[20vw] bg-[#1b1c24] border-r-2 border-[#2f303b] w-full">
-      <div className="pt-3">
+    <div className="flex flex-col h-screen md:w-[35vw] lg:w-[30vw] xl:w-[20vw] w-full bg-gradient-to-b from-[#23243a] via-[#1b1c24] to-[#181920] border-r border-[#23243a] shadow-xl">
+      <div className="pt-3 pb-2 border-b border-[#23243a] bg-[#23243a]/40">
         <Logo />
       </div>
-      <div className="my-5">
-        <div className="flex items-center justify-between pr-10">
-          <Title text="Mesajlar"></Title>
-          <NewDM />
-        </div>
-        <div className="max-h-[38vh] overflow-y-auto scrollbar-hidden">
-          <ContactList contacts={directMessagesContacts} />
+      <div className="flex-1 min-h-0 flex flex-col">
+        <div className="overflow-y-auto flex-1 px-2 py-4 space-y-6 custom-scrollbar">
+          <div className="bg-[#23243a]/60 rounded-xl shadow p-3">
+            <div className="flex items-center justify-between mb-2">
+              <Title text="Mesajlar" />
+              <NewDM />
+            </div>
+            <div className="space-y-1">
+              <ContactList contacts={directMessagesContacts} />
+            </div>
+          </div>
+          <div className="bg-[#23243a]/60 rounded-xl shadow p-3">
+            <div className="flex items-center justify-between mb-2">
+              <Title text="Kanallar" />
+              <CreateChannel />
+            </div>
+            <div className="space-y-1">
+              <ContactList contacts={channels} isChannel={true} />
+            </div>
+          </div>
         </div>
       </div>
-      <div className="my-5">
-        <div className="flex items-center justify-between pr-10">
-          <Title text="Kanallar"></Title>
-          <CreateChannel />
-        </div>
-        <div className="max-h-[38vh] overflow-y-auto scrollbar-hidden">
-          <ContactList contacts={channels} isChannel={true} />
-        </div>
+      <div className="shrink-0 border-t border-[#23243a] bg-[#23243a]/40 px-2 py-4">
+        <ProfileInfo />
       </div>
-      <ProfileInfo />
     </div>
   );
 };
@@ -117,7 +123,7 @@ const Logo = () => {
 
 const Title = ({ text }) => {
   return (
-    <h6 className="text-xl font-semibold tracking-wide text-neutral-600 pl-10">
+    <h6 className="text-base font-semibold tracking-wide text-neutral-300 uppercase letter-spacing-[0.1em]">
       {text}
     </h6>
   );

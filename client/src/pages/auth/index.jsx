@@ -23,55 +23,92 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [signupLoading, setSignupLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [signupError, setSignupError] = useState("");
+  const [loginTouched, setLoginTouched] = useState({ email: false, password: false });
+  const [signupTouched, setSignupTouched] = useState({ email: false, password: false, confirmPassword: false });
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateLogin = () => {
     if (!email.length) {
-      toast.error("Email is required!");
+      setLoginError("Email is required!");
+      return false;
+    }
+    if (!emailRegex.test(email)) {
+      setLoginError("Please enter a valid email address!");
       return false;
     }
     if (!password.length) {
-      toast.error("Password is required!");
+      setLoginError("Password is required!");
       return false;
     }
+    setLoginError("");
     return true;
   }
 
   const validateSignup = () => {
     if (!email.length) {
-      toast.error("Email is required!");
+      setSignupError("Email is required!");
+      return false;
+    }
+    if (!emailRegex.test(email)) {
+      setSignupError("Please enter a valid email address!");
       return false;
     }
     if (!password.length) {
-      toast.error("Password is required!");
+      setSignupError("Password is required!");
       return false;
     }
-
+    if (password.length < 6) {
+      setSignupError("Password must be at least 6 characters!");
+      return false;
+    }
     if (password !== confirmPassword) {
-      toast.error("Password and Confirm Password are not same !!");
+      setSignupError("Password and Confirm Password are not the same!");
       return false;
     }
+    setSignupError("");
     return true;
   };
 
   const handleLogin = async () => {
+    setLoginTouched({ email: true, password: true });
     if(validateLogin()) {
-      const response = await apiClient.post(LOGIN_ROUTE,{email,password},{withCredentials:true})
-      if(response.data.user.id){
-        setUserInfo(response.data.user);
-        if(response.data.user.profileSetup) {navigate("/chat");}
-        else {navigate("profile");}
+      setLoginLoading(true);
+      try {
+        const response = await apiClient.post(LOGIN_ROUTE,{email,password},{withCredentials:true})
+        if(response.data.user.id){
+          setUserInfo(response.data.user);
+          toast.success("Login successful!");
+          if(response.data.user.profileSetup) {navigate("/chat");}
+          else {navigate("/profile");}
+        }
+      } catch (err) {
+        setLoginError("Invalid email or password!");
+      } finally {
+        setLoginLoading(false);
       }
-      console.log( {response});
     }
   };
   const handleSignup = async () => {
+    setSignupTouched({ email: true, password: true, confirmPassword: true });
     if (validateSignup()) {
-      const response = await apiClient.post(SIGNUP_ROUTE, { email, password },{ withCredentials: true });
-      if(response.status === 201){
-        setUserInfo(response.data.user);
-        navigate("/profile");
+      setSignupLoading(true);
+      try {
+        const response = await apiClient.post(SIGNUP_ROUTE, { email, password },{ withCredentials: true });
+        if(response.status === 201){
+          setUserInfo(response.data.user);
+          toast.success("Signup successful! Please complete your profile.");
+          navigate("/profile");
+        }
+      } catch (err) {
+        setSignupError("Signup failed! Try a different email.");
+      } finally {
+        setSignupLoading(false);
       }
-      console.log({ response });
     }
   };  
   return (
@@ -111,51 +148,55 @@ const Auth = () => {
                 <Input
                   placeholder="Email"
                   type="email"
-                  className="rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+                  className={`rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40 ${loginTouched.email && loginError ? 'border-red-500' : ''}`}
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => { setEmail(e.target.value); setLoginError(""); setLoginTouched(t => ({...t, email: true})); }}
                 />
                 <Input
                   placeholder="Password"
                   type="password"
-                  className="rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+                  className={`rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40 ${loginTouched.password && loginError ? 'border-red-500' : ''}`}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => { setPassword(e.target.value); setLoginError(""); setLoginTouched(t => ({...t, password: true})); }}
                 />
+                {loginError && <div className="text-red-400 text-sm text-center -mt-3">{loginError}</div>}
                 <Button
                   className="rounded-full p-6 cursor-pointer bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white shadow-lg shadow-fuchsia-500/20"
                   onClick={handleLogin}
+                  disabled={loginLoading}
                 >
-                  Login
+                  {loginLoading ? 'Loading...' : 'Login'}
                 </Button>
               </TabsContent>
               <TabsContent className="flex flex-col gap-5 mt-5" value="signup">
                 <Input
                   placeholder="Email"
                   type="email"
-                  className="rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+                  className={`rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40 ${signupTouched.email && signupError ? 'border-red-500' : ''}`}
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => { setEmail(e.target.value); setSignupError(""); setSignupTouched(t => ({...t, email: true})); }}
                 />
                 <Input
                   placeholder="Password"
                   type="password"
-                  className="rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+                  className={`rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40 ${signupTouched.password && signupError ? 'border-red-500' : ''}`}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => { setPassword(e.target.value); setSignupError(""); setSignupTouched(t => ({...t, password: true})); }}
                 />
                 <Input
                   placeholder="Confirm Password"
                   type="password"
-                  className="rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+                  className={`rounded-full p-6 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40 ${signupTouched.confirmPassword && signupError ? 'border-red-500' : ''}`}
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => { setConfirmPassword(e.target.value); setSignupError(""); setSignupTouched(t => ({...t, confirmPassword: true})); }}
                 />
+                {signupError && <div className="text-red-400 text-sm text-center -mt-3">{signupError}</div>}
                 <Button
                   className="rounded-full p-6 cursor-pointer bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white shadow-lg shadow-fuchsia-500/20"
                   onClick={handleSignup}
+                  disabled={signupLoading}
                 >
-                  SignUp
+                  {signupLoading ? 'Loading...' : 'SignUp'}
                 </Button>
               </TabsContent>
             </Tabs>

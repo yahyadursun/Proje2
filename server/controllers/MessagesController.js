@@ -52,3 +52,15 @@ export const uploadFile = async (request, response, next) => {
     return response.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+export const uploadVoiceMessage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "Ses dosyası yüklenemedi" });
+    }
+    return res.status(200).json({ fileUrl: req.file.path });
+  } catch (error) {
+    console.log("[uploadVoiceMessage ERROR]", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
