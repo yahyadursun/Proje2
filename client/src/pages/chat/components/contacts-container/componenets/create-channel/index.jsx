@@ -14,6 +14,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import Textarea from "@/components/ui/textarea";
 import apiClient from "@/lib/api-client.js";
 import { useAppStore } from "@/store";
 import { useEffect } from "react";
@@ -31,6 +32,8 @@ const CreateChannel = () => {
   const [allConstacts, setAllContacts] = useState([]);
   const [selectedContacts, setSelectedContacts] = useState([]);
   const [channelName, setChannelName] = useState("");
+  const [channelDescription, setChannelDescription] = useState("");
+  const [channelImage, setChannelImage] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -45,17 +48,26 @@ const CreateChannel = () => {
   const createChannel = async () => {
     try {
       if (channelName.length > 0 && selectedContacts.length > 0) {
+        const formData = new FormData();
+        formData.append("name", channelName);
+        formData.append("members", JSON.stringify(selectedContacts.map((contact) => contact.value)));
+        formData.append("description", channelDescription);
+        if (channelImage) {
+          formData.append("image", channelImage);
+        }
         const response = await apiClient.post(
           CREATE_CHANNEL_ROUTES,
+          formData,
           {
-            name: channelName,
-            members: selectedContacts.map((contact) => contact.value),
-          },
-          { withCredentials: true }
+            withCredentials: true,
+            headers: { "Content-Type": "multipart/form-data" },
+          }
         );
         if (response.status === 201) {
           setChannelName("");
+          setChannelDescription("");
           setSelectedContacts([]);
+          setChannelImage(null);
           setNewChannelModal(false);
           addChannel(response.data.channel);
         }
@@ -81,12 +93,12 @@ const CreateChannel = () => {
         </Tooltip>
       </TooltipProvider>
       <Dialog open={newChannelModal} onOpenChange={setNewChannelModal}>
-        <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
+        <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[auto] flex flex-col">
           <DialogHeader>
             <DialogTitle>Kanal Detaylarını Giriniz</DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
-          <div>
+          <div className="mb-2">
             <Input
               placeholder="Kanal İsmi"
               className="rounded-lg p-6 bg-[#2c2e3b] border-none"
@@ -94,7 +106,22 @@ const CreateChannel = () => {
               value={channelName}
             />
           </div>
-          <div>
+          <div className="mb-2">
+            <Textarea
+              placeholder="Kanal Açıklaması (isteğe bağlı)"
+              className="rounded-lg p-3 bg-[#2c2e3b] border-none"
+              onChange={(e) => setChannelDescription(e.target.value)}
+              value={channelDescription}
+              rows={2}
+            />
+          </div>
+          <div className="mb-2">
+            <input
+              type="file"
+              accept="image/*"
+              className="rounded-lg p-2 bg-[#2c2e3b] border-none text-white"
+              onChange={e => setChannelImage(e.target.files[0])}
+            />
             <MultipleSelector
               className="rounded-lg bg-[#2c2e3b] border-none py-2 text-white"
               defaultOptions={allConstacts}

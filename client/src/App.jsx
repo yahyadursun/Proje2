@@ -34,8 +34,13 @@ const App = () => {
           setUserInfo(undefined);
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
-        setUserInfo(undefined);
+        if (error.response && error.response.status === 403) {
+          // Oturum yok, sessizce ignore et
+          setUserInfo(undefined);
+        } else {
+          console.error("Error fetching user data:", error);
+          setUserInfo(undefined);
+        }
       } finally {
         setLoading(false);
       }

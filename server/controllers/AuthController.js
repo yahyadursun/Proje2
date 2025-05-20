@@ -196,3 +196,13 @@ export const logout = async (request, response, next) => {
     return response.status(500).json({message : "Internal Server Error"});
   }
 };
+
+export const getAllUsers = async (request, response, next) => {
+  try {
+    const users = await User.find({}, "_id firstName lastName email image color");
+    return response.status(200).json({ users });
+  } catch (error) {
+    console.log("[getAllUsers ERROR]", error);
+    return response.status(500).json({ message: "Internal Server Error" });
+  }
+};
