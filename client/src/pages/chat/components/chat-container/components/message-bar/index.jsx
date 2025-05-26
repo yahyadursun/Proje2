@@ -167,8 +167,8 @@ const MessageBar = () => {
   };
 
   return (
-    <div className="h-[12vh] bg-gradient-to-r from-fuchsia-500/10 to-purple-600/10 backdrop-blur-sm border-t border-white/10 flex justify-center items-center px-4 py-4">
-      <div className="flex-1 flex bg-white/5 backdrop-blur-sm rounded-full items-center gap-4 px-6 py-3 w-full max-w-[90%]">
+    <div className="h-[10vh] w-auto bg-gradient-to-r from-fuchsia-500/10 to-purple-600/10 backdrop-blur-sm border-t border-white/10 flex justify-center items-center px-4 py-4">
+      <div className="flex-1 flex bg-white/5 backdrop-blur-sm rounded-full items-center h-12 gap-4 px-6 py-3 w-full max-w-[90%]">
         <input
           type="text"
           className="flex-1 bg-transparent text-fuchsia-100 placeholder-fuchsia-300/40 p-4 focus:outline-none text-lg"
@@ -246,7 +246,7 @@ const MessageBar = () => {
         </div>
       </div>
       <button
-        className="h-16 w-16 rounded-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white shadow-lg shadow-fuchsia-500/20 flex items-center justify-center focus:outline-none duration-300 transition-all ml-4"
+        className="h-12 w-12 rounded-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white shadow-lg shadow-fuchsia-500/20 flex items-center justify-center focus:outline-none duration-300 transition-all ml-4"
         onClick={handleSendMessage}
       >
         <IoSend className="text-2xl" />

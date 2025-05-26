@@ -117,7 +117,7 @@ const Auth = () => {
         <div className="flex flex-col gap-10 items-center justify-center p-8">
           <div className="flex items-center justify-center flex-col">
             <div className="flex items-center justify-center">
-              <h1 className="text-5xl font-bold md:text-6xl ml-5 bg-gradient-to-r from-fuchsia-500 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-bold md:text-5xl ml-5 bg-gradient-to-r from-fuchsia-500 to-purple-600 bg-clip-text text-transparent">
                 Hoşgeldiniz
               </h1>
               <img
