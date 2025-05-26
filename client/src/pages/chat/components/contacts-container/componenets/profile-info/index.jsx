@@ -35,32 +35,32 @@ const ProfileInfo = () => {
   };
 
   return (
-    <div className="absolute bottom-0 h-16 flex items-center justify-between px-10 w-88 bg-[#2a2b33]">
-      <div className="flex hap-3 items-center justify-center">
-        <div className="w-12 h-12 relative">
-          <Avatar className="h-12 w-12 md:h-48 md:w-48 rounded-full overflow-hidden">
-            {userInfo.image ? (
-              <AvatarImage
-                src={`${HOST}/${userInfo.image}`}
-                alt="profile"
-                className="object-cover w-full h-full bg-black"
-              />
-            ) : (
-              <div
-                className={`uppercase h-12 w-12 text-lg  flex items-center justify-center ${getColor(
-                  userInfo.color
-                )}`}
-              >
-                {userInfo.firstName && userInfo.firstName.trim() !== "" // firstName'in var olup olmadığını kontrol et
-                  ? userInfo.firstName.split(" ").shift()
-                  : userInfo.email && userInfo.email.trim() !== "" // Eğer firstName yoksa, email kontrol et
-                  ? userInfo.email.split(" ").shift()
-                  : ""}
-              </div>
-            )}
-          </Avatar>
-        </div>
-        <div>
+    <div className="w-full h-9 flex items-center justify-between px-6 bg-[#1b1c2]">
+      {/* Avatar & İsim */}
+      <div className="flex gap-3 items-center">
+        <Avatar className="h-12 w-12 rounded-full overflow-hidden">
+          {userInfo.image ? (
+            <AvatarImage
+              src={`${HOST}/${userInfo.image}`}
+              alt="profile"
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <div
+              className={`uppercase h-12 w-12 flex items-center justify-center ${getColor(
+                userInfo.color
+              )}`}
+            >
+              {(userInfo.firstName?.trim()
+                ? userInfo.firstName.split(" ").shift()
+                : userInfo.email?.trim()
+                ? userInfo.email.split(" ").shift()
+                : ""
+              )}
+            </div>
+          )}
+        </Avatar>
+        <span className="text-white font-medium text-sm">
           {userInfo.firstName && userInfo.lastName
             ? `${userInfo.firstName} ${userInfo.lastName}`
             : userInfo.email}
