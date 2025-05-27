@@ -367,44 +367,39 @@ const ChatHeader = () => {
                           
                           {/* Admin kontrolleri */}
                           <div className="flex justify-center mb-4 space-x-2">
-                            {/* Düzenle butonu - şimdilik herkese görünür yap */}
-                            <button 
-                              className="bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2"
-                              onClick={startEdit}
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                              </svg>
-                              Düzenle
-                            </button>
+                            {/* Düzenle butonu - sadece admin veya creator */}
+                            {(isAdmin || isCreator) && (
+                              <button 
+                                className="bg-purple-700 hover:bg-purple-800 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2"
+                                onClick={startEdit}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                </svg>
+                                Düzenle
+                              </button>
+                            )}
                             
-                            {/* Admin ekle butonu - her zaman görünür */}
-                            <TooltipProvider>
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <button 
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors duration-200"
-                                    onClick={() => {
-                                      console.log("Admin ekle butonuna tıklandı");
-                                      console.log("isCreator:", isCreator);
-                                      console.log("isAdmin:", isAdmin);
-                                      // Tüm üyeler
-                                      console.log("Üyeler:", selectedChatData.members);
-                                      // Tüm adminler
-                                      console.log("Adminler:", selectedChatData.admins);
-                                      
-                                      // Modal'ı aç
-                                      setOpenAddAdminModal(true);
-                                    }}
-                                  >
-                                    <FaUserShield className="h-5 w-5" />
-                                  </button>
-                                </TooltipTrigger>
-                                <TooltipContent className="bg-[#1c1b1e] border-none p-2 text-white">
-                                  Admin Ekle
-                                </TooltipContent>
-                              </Tooltip>
-                            </TooltipProvider>
+                            {/* Admin ekle butonu - sadece admin veya creator */}
+                            {(isAdmin || isCreator) && (
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <button 
+                                      className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors duration-200"
+                                      onClick={() => {
+                                        setOpenAddAdminModal(true);
+                                      }}
+                                    >
+                                      <FaUserShield className="h-5 w-5" />
+                                    </button>
+                                  </TooltipTrigger>
+                                  <TooltipContent className="bg-[#1c1b1e] border-none p-2 text-white">
+                                    Admin Ekle
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            )}
                             
                             {/* Kanalı sil butonu - sadece kurucu */}
                             {isCreator && (
