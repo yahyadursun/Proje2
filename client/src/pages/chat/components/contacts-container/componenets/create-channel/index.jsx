@@ -25,7 +25,7 @@ import {
 import MultipleSelector from "@/components/ui/multipleselect";
 
 const CreateChannel = () => {
-  const { setSelectedChatType, setSelectedChatData, addChannel } =
+  const { setSelectedChatType, setSelectedChatData, addChannel, userInfo } =
     useAppStore();
   const [newChannelModal, setNewChannelModal] = useState(false);
 
@@ -93,6 +93,10 @@ const CreateChannel = () => {
         setPreviewImage(null);
         setNewChannelModal(false);
         addChannel(response.data.channel);
+        
+        // Eğer istenirse yeni oluşturulan kanalı otomatik olarak seçebiliriz
+        // setSelectedChatType("channel");
+        // setSelectedChatData(response.data.channel);
       }
     } catch (error) {
       setError("Kanal oluşturulamadı. Lütfen tekrar deneyin.");

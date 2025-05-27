@@ -24,6 +24,36 @@ export const createChatSlice = (set, get) => ({
     const channels = get().channels;
     set({ channels: [channel, ...channels] });
   },
+  updateChannelData: (updatedChannel) => {
+    // Seçili kanal bu ise, onu da güncelle
+    const selectedChatData = get().selectedChatData;
+    const selectedChatType = get().selectedChatType;
+    
+    if (selectedChatType === "channel" && selectedChatData && selectedChatData._id === updatedChannel._id) {
+      set({ selectedChatData: updatedChannel });
+    }
+    
+    // Kanal listesinde kanalı güncelle
+    const channels = get().channels;
+    const updatedChannels = channels.map(channel => 
+      channel._id === updatedChannel._id ? updatedChannel : channel
+    );
+    
+    set({ channels: updatedChannels });
+  },
+  removeChannel: (channelId) => {
+    const channels = get().channels;
+    set({ channels: channels.filter(channel => channel._id !== channelId) });
+    // Eğer silinen kanal seçili ise sohbeti kapat
+    const selectedChatData = get().selectedChatData;
+    if (selectedChatData && selectedChatData._id === channelId) {
+      set({
+        selectedChatData: undefined,
+        selectedChatType: undefined,
+        selectedChatMessages: [],
+      });
+    }
+  },
   closeChat: () =>
     set({
       selectedChatData: undefined,

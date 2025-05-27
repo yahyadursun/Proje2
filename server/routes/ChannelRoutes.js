@@ -5,6 +5,9 @@ import {
      getChannelMessages,
      getUserChannels,
      updateChannel,
+     addChannelAdmin,
+     removeChannelAdmin,
+     deleteChannel,
 } from "../controllers/ChannelController.js";
 import multer from "multer";
 import path from "path";
@@ -31,4 +34,8 @@ channelRoutes.get("/get-user-channels", verifyToken, getUserChannels);
 // In channelRoutes.js
 channelRoutes.get("/get-channel-messages/:channelId", verifyToken, getChannelMessages);
 channelRoutes.patch("/update-channel/:id", verifyToken, upload.single("image"), updateChannel);
+channelRoutes.post("/add-channel-admin", verifyToken, addChannelAdmin);
+channelRoutes.post("/remove-channel-admin", verifyToken, removeChannelAdmin);
+channelRoutes.delete("/delete-channel/:channelId", verifyToken, deleteChannel);
+
 export default channelRoutes;
