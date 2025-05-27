@@ -39,10 +39,14 @@ const CreateChannel = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await apiClient.get(GET_ALL_CONTACTS_ROUTES, {
-        withCredentials: true,
-      });
-      setAllContacts(response.data.contacts);
+      // Tüm kullanıcıları getir
+      const response = await apiClient.get("/api/contacts/get-all-users", { withCredentials: true });
+      setAllContacts(
+        response.data.users.map(c => ({
+          label: c.firstName ? `${c.firstName} ${c.lastName}` : c.email,
+          value: c._id
+        }))
+      );
     };
     getData();
   }, []);

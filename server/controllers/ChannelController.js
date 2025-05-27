@@ -113,11 +113,10 @@ export const updateChannel = async (request, response, next) => {
       return response.status(404).json({ message: "Kanal bulunamadı!" });
     }
     
-    // Sadece admin veya yöneticiler güncelleyebilir
-    const isAdmin = channel.admins.some(admin => admin.toString() === userId);
-    const isMainAdmin = channel.admin.toString() === userId;
-    
-    if (!isAdmin && !isMainAdmin) {
+    // Sadece creator veya adminler güncelleyebilir
+    const isAdmin = Array.isArray(channel.admins) && channel.admins.some(admin => admin && admin.toString() === userId);
+    const isCreator = channel.creator && channel.creator.toString() === userId;
+    if (!isAdmin && !isCreator) {
       return response.status(403).json({ message: "Bu işlem için yetkiniz yok!" });
     }
 
