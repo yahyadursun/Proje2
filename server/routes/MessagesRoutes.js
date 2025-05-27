@@ -1,5 +1,5 @@
 import { verifyToken } from "../middlewares/AuthMiddleware.js";
-import { getMessages, uploadFile, uploadVoiceMessage } from "../controllers/MessagesController.js";
+import { getMessages, uploadFile, uploadVoiceMessage, clearConversation } from "../controllers/MessagesController.js";
 import { Router } from "express";
 import multer from "multer";
 import path from "path";
@@ -37,5 +37,6 @@ messagesRoutes.post(
   uploadVoice.single("voice"),
   uploadVoiceMessage
 );
+messagesRoutes.post("/clear-conversation", verifyToken, clearConversation);
 
 export default messagesRoutes;
