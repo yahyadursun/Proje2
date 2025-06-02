@@ -5,8 +5,18 @@ const channelSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    image: {
+        type: String,
+        required: false,
+    },
+    description: {
+        type: String,
+        required: false,
+    },
     members: [{type: mongoose.Schema.ObjectId, ref: "Users", required: true}],
     admin: {type: mongoose.Schema.ObjectId, ref: "Users", required: true},
+    creator: {type: mongoose.Schema.ObjectId, ref: "Users", required: true},
+    admins: [{type: mongoose.Schema.ObjectId, ref: "Users", required: false}],
     messages: [{type: mongoose.Schema.ObjectId, ref: "Messages", required: false}],
     createdAt: {
         type: Date,

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import User from "../models/UserModel.js";
 import Message from "../models/MessagesModel.js";
+import { getAllUsers } from "./AuthController.js";
 
 export const searchContancts = async (request, response, next) => {
   try {

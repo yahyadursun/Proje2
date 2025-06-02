@@ -128,3 +128,16 @@
   font-weight: 500;
   font-style: normal;
 }
+
+/* Modern ve şık custom sidebar scroll'u */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3A86FF 0%, #8338EC 100%);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5f9fff 0%, #a084ee 100%);
+}

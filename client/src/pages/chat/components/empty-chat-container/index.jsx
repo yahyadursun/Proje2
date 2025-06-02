@@ -12,7 +12,7 @@ const EmptyChatContainer = () => {
       <div className="text-opacity-80 text-white felx felx-col gap-5 item-center mt-10 lg:text-4xl text-3xl transition-all duration-300 text-center">
         <h3 className="poppins-medium">
           Selam<span className="text-purple-500">!</span> 
-          <span className="text-purple-500"> StudyBody'e</span> Hoş Geldiniz{" "}
+          <span className="text-purple-500"> StudyBuddy'e</span> Hoş Geldiniz{" "}
           <span className="text-purple-500">.</span>
         </h3>
       </div>

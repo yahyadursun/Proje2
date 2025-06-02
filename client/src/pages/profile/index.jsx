@@ -27,15 +27,15 @@ const Profile = () => {
   const [selectedColor, setSelectedColor] = useState(0);
   const fileInputRef = useRef(null);
   useEffect(() => {
-    if (userInfo.profileSetup) {
+    if (userInfo?.profileSetup) {
       setFirstName(userInfo.firstName);
       setLastName(userInfo.lastName);
       setSelectedColor(userInfo.color);
     }
-    if(userInfo.image){
+    if(userInfo?.image){
       setImage(`${HOST}/${userInfo.image}`)
     }
-  });
+  }, [userInfo]);
 
   const validateProfile = () => {
     if (!firstName) {
@@ -57,9 +57,9 @@ const Profile = () => {
           { withCredentials: true }
         );
         if (response.status === 200 && response.data) {
-          setUserInfo({ ...response.data });
-          toast.success("Profile updated successfully.");
-          navigate("/chat");
+          toast.success("Profile updated successfully. Please login again.");
+          setUserInfo(null);
+          navigate("/");
         }
       } catch (error) {}
     }
@@ -105,109 +105,112 @@ const Profile = () => {
     }
   };
   return (
-    <div className="bg-[#1b1c24] min-h-screen flex items-center justify-center px-4 py-10">
-      <div className="flex flex-col gap-10 w-full max-w-4xl">
-        <div onClick={handleNavigate}>
-          <IoArrowBack className="text-4xl lg:text-5xl text-white/90 cursor-pointer" />
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-fuchsia-900 flex items-center justify-center px-4 py-10">
+      {!userInfo ? (
+        <div className="text-fuchsia-200 text-xl">Loading...</div>
+      ) : (
+        <div className="flex flex-col gap-10 w-full max-w-4xl">
+          <div onClick={handleNavigate} className="hover:scale-110 transition-transform duration-300">
+            <IoArrowBack className="text-4xl lg:text-5xl text-fuchsia-200 cursor-pointer" />
+          </div>
+    
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white/5 backdrop-blur-lg p-8 rounded-3xl border border-white/10 shadow-2xl">
+            {/* Avatar & Image Upload Area */}
+            <div
+              className="relative flex items-center justify-center"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              <Avatar className="h-40 w-40 md:h-48 md:w-48 rounded-full overflow-hidden shadow-lg shadow-fuchsia-500/20">
+                {image ? (
+                  <AvatarImage
+                    src={image}
+                    alt="profile"
+                    className="object-cover w-full h-full bg-black"
+                  />
+                ) : (
+                  <div
+                    className={`uppercase text-5xl md:text-6xl w-full h-full flex items-center justify-center ${getColor(
+                      selectedColor
+                    )}`}
+                  >
+                    {firstName
+                      ? firstName[0]
+                      : userInfo?.email?.[0] || '?'}
+                  </div>
+                )}
+              </Avatar>
   
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Avatar & Image Upload Area */}
-          <div
-            className="relative flex items-center justify-center"
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-          >
-            <Avatar className="h-40 w-40 md:h-48 md:w-48 rounded-full overflow-hidden">
-              {image ? (
-                <AvatarImage
-                  src={image}
-                  alt="profile"
-                  className="object-cover w-full h-full bg-black"
-                />
-              ) : (
+              {hovered && (
                 <div
-                  className={`uppercase text-5xl md:text-6xl w-full h-full flex items-center justify-center ${getColor(
-                    selectedColor
-                  )}`}
+                  className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-black/60"
+                  onClick={image ? handleDeleteImage : handleFileInputClick}
                 >
-                  {firstName
-                    ? firstName[0]
-                    : userInfo.email[0]}
+                  {image ? (
+                    <FaTrash className="text-white text-3xl hover:scale-110 transition-transform duration-300" />
+                  ) : (
+                    <FaPlus className="text-white text-3xl hover:scale-110 transition-transform duration-300" />
+                  )}
                 </div>
               )}
-            </Avatar>
   
-            {hovered && (
-              <div
-                className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-full"
-                onClick={image ? handleDeleteImage : handleFileInputClick}
-              >
-                {image ? (
-                  <FaTrash className="text-white text-3xl" />
-                ) : (
-                  <FaPlus className="text-white text-3xl" />
-                )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                className="hidden"
+                onChange={handleImageChange}
+                name="profile-image"
+                accept=".png, .jpeg, .jpg, .svg, .webp"
+              />
+            </div>
+  
+            {/* Form Area */}
+            <div className="flex flex-col gap-4 text-white justify-center">
+              <Input
+                placeholder="Email"
+                type="email"
+                disabled
+                value={userInfo.email}
+                className="rounded-full px-5 py-4 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+              />
+              <Input
+                placeholder="First Name"
+                type="text"
+                onChange={(e) => setFirstName(e.target.value)}
+                value={firstName}
+                className="rounded-full px-5 py-4 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+              />
+              <Input
+                placeholder="Last Name"
+                type="text"
+                onChange={(e) => setLastName(e.target.value)}
+                value={lastName}
+                className="rounded-full px-5 py-4 bg-white/5 border-fuchsia-500/20 text-fuchsia-100 placeholder-fuchsia-300/40 focus:border-fuchsia-500/40"
+              />
+    
+              {/* Color Options */}
+              <div className="flex gap-3 mt-2">
+                {colors.map((color, index) => (
+                  <div
+                    key={index}
+                    className={`h-8 w-8 rounded-full cursor-pointer transition-all duration-300 ${color} ${
+                      selectedColor === index ? "outline outline-fuchsia-500/60 shadow-lg shadow-fuchsia-500/20 scale-110" : ""
+                    } hover:scale-110`}
+                    onClick={() => setSelectedColor(index)}
+                  />
+                ))}
               </div>
-            )}
-  
-            <input
-              ref={fileInputRef}
-              type="file"
-              className="hidden"
-              onChange={handleImageChange}
-              name="profile-image"
-              accept=".png, .jpeg, .jpg, .svg, .webp"
-            />
-          </div>
-  
-          {/* Form Area */}
-          <div className="flex flex-col gap-4 text-white justify-center">
-            <Input
-              placeholder="Email"
-              type="email"
-              disabled
-              value={userInfo.email}
-              className="rounded-lg px-5 py-4 bg-[#2c2e3b] border-none"
-            />
-            <Input
-              placeholder="First Name"
-              type="text"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={firstName}
-              className="rounded-lg px-5 py-4 bg-[#2c2e3b] border-none"
-            />
-            <Input
-              placeholder="Last Name"
-              type="text"
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-              className="rounded-lg px-5 py-4 bg-[#2c2e3b] border-none"
-            />
-  
-            {/* Color Options */}
-            <div className="flex gap-3 mt-2">
-              {colors.map((color, index) => (
-                <div
-                  key={index}
-                  className={`h-8 w-8 rounded-full cursor-pointer transition-all duration-300 ${color} ${
-                    selectedColor === index ? "outline outline-white/60" : ""
-                  }`}
-                  onClick={() => setSelectedColor(index)}
-                />
-              ))}
+
+              <Button
+                onClick={saveChanges}
+                className="mt-4 rounded-full p-6 cursor-pointer bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white shadow-lg shadow-fuchsia-500/20"
+              >
+                Save Changes
+              </Button>
             </div>
           </div>
         </div>
-  
-        {/* Save Button */}
-        <Button
-          className="h-14 w-full bg-purple-700 hover:bg-purple-900 transition-all duration-300 text-lg"
-          onClick={saveChanges}
-        >
-          Save Changes
-        </Button>
-      </div>
+      )}
     </div>
   );
   

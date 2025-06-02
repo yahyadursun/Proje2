@@ -1,0 +1,482 @@
+[
+Remote AI Model-training Engineer (min 20 hours/week contract)
+Türkiye · 3 weeks ago · Over 100 people clicked apply
+
+Remote
+ Full-time
+Matches your job preferences, job type is Full-time.
+
+Apply
+
+Save
+Save Remote AI Model-training Engineer (min 20 hours/week contract) at Snaphyre
+Remote AI Model-training Engineer (min 20 hours/week contract)
+Snaphyre · Türkiye (Remote)
+
+Apply
+
+Save
+Save Remote AI Model-training Engineer (min 20 hours/week contract) at Snaphyre
+Show more options
+How your profile and resume fit this job
+Get AI-powered advice on this job and more exclusive features with Premium. Try Premium for TL0
+
+
+
+Tailor my resume to this job
+
+Am I a good fit for this job?
+
+How can I best position myself for this job?
+
+About the job
+Our client is a pioneering AI data company that has been advancing the development of AI applications for nearly a decade. They specialize in enabling large-scale, high-quality data solutions that support cutting-edge fields like generative AI, autonomous systems and are focused on expanding their AI capabilities to support a wide range of evaluations for public and private sector clients.
+
+The Role
+
+Our client is seeking skilled engineers to join their team in a contract role, with flexible options for part-time (minimum 20 hours per week) or full-time engagement. The role involves collecting, curating, and annotating AI data and code to train and evaluate AI models. In this role, you will review prompts and refine code as needed to ensure accurate, high-quality outputs. Your expertise will play a crucial part in enhancing response accuracy and improving overall system performance. This is a fantastic opportunity to work within a collaborative, dynamic environment and contribute to innovative projects.
+
+Ideal Profile
+
+Qualifications
+
+This role focuses on practical tech skills, emphasizing problem-solving and adaptability in delivering high-quality AI solutions. Our client is seeking skilled engineers with the following qualifications:
+
+Software Engineering Experience: A degree in Computer Science or a related field, with proficiency in programming languages like Java, C, C++, Python, Go, SQL, Node React, TypeScript, and/or MongoDB.
+Team Player: Experience in working with or managing teams in dynamic, fast-paced environments.
+Problem Solving & Communication: Strong English communication skills and an action-oriented mindset to tackle challenges effectively.
+Self-Motivated & Goal-Oriented: You can work independently, are goal-driven, and thrive in a fully remote team environment.
+Compensation: USD 15 - USD 25 per hour, depending on your skill set.
+
+Shortlisted candidates will be invited to participate in a one-hour coding challenge, followed by a final interview for successful applicants. This contract role offers flexible working hours, with options for part-time (minimum 20 hours per week) or full-time engagement.
+
+What's on Offer?
+
+Flexible working options ( min 20 hours a week part-time or full time role)
+Fully remote role 
+Work within a pioneering, fast growing AI data company
+
+]
+
+[
+AI & Data Science Internship
+EMEA · 5 hours ago · 78 applicants
+
+Remote
+ Internship
+Matches your job preferences, job type is Internship.
+2 of 13 skills match: Artificial Intelligence (AI), Python (Programming Language)
+2 of 13 required skills are found on your profile
+
+Easy Apply
+
+Save
+Save AI & Data Science Internship at Refonte Learning AI
+AI & Data Science Internship
+Refonte Learning AI · EMEA (Remote)
+
+Easy Apply
+
+Save
+Save AI & Data Science Internship at Refonte Learning AI
+Show more options
+How your profile and resume fit this job
+Get AI-powered advice on this job and more exclusive features with Premium. Try Premium for TL0
+
+
+
+Tailor my resume to this job
+
+Am I a good fit for this job?
+
+How can I best position myself for this job?
+
+About the job
+Refonte or Refonte AI is a leading IT corporation globally recognized for its expertise in providing top-notch IT and Ed-tech services. Specializing in Artificial intelligence (AI), digital marketing, data science, data analytics, UI-UX design, web development, and app development, we are dedicated to innovation, excellence, and empowering talents worldwide.
+
+
+
+Job Title: AI, Data Science, DevOps, and Cloud Intern
+
+
+
+Benefits:
+
+This internship offers an exciting opportunity to gain practical experience in AI, Data Science, DevOps, and Cloud technologies, working on impactful projects and contributing to the development of innovative solutions. If you are enthusiastic about technology and eager to learn, we encourage you to apply and join our team.
+
+
+
+Learn More: https://refontelearning.ai/
+
+
+
+Job Summary:
+
+
+
+Refonte Learning is seeking enthusiastic individuals for our prestigious AI & Data Science Study and Internship Program. This intensive initiative offers a unique opportunity to collaborate closely with our seasoned AI & data science team on diverse and impactful projects.
+
+
+
+Refonte Learning is seeking enthusiastic individuals who are looking to learn AI & Data Science from beginning to advanced level while also working on live projects globally. RIGTIP (Refonte Infini Global Training & Internship Program) is designed as a manner that offers you to work in a flexible work environment but also offers working with people in a global team from Oceania, Asia, Europe and American continents.
+
+
+
+Job Description:
+
+We are excited to offer an internship opportunity for individuals passionate about the convergence of AI, Data Science, DevOps, and Cloud technologies. As an AI, Data Science, DevOps, and Cloud Intern, you will have the unique opportunity to gain hands-on experience in these dynamic and interconnected fields, working on innovative projects and collaborating with experienced professionals.
+
+
+
+Responsibilities:
+
+Collaborate with cross-functional teams to develop, deploy, and maintain AI-driven solutions.
+Assist in collecting, cleaning, and analyzing data from various sources to derive actionable insights.
+Contribute to the design and implementation of scalable data pipelines for model training and deployment.
+Support the integration of machine learning models into production systems using DevOps best practices.
+Participate in designing and optimizing CI/CD pipelines for continuous integration, testing, and deployment of AI applications on cloud platforms.
+Assist in infrastructure provisioning, configuration, and monitoring using cloud services such as AWS, Azure, or Google Cloud.
+Work closely with data scientists and engineers to understand business requirements and translate them into technical solutions.
+Research and experiment with emerging technologies and tools in AI, Data Science, DevOps, and Cloud domains.
+Collaborate on documentation efforts to ensure knowledge sharing and best practices across the team.
+
+
+Projects You Will Work On:
+
+- Multi Cloud AI Infrastructure Configuration, Automation and Deployment
+
+- Full Stack AI DevOps & Development
+
+- Generative AI model, Large Language Models and Foundations models to transform input to output.
+
+NB: Input can be text, images, audios or videos; Output can also be text, images, audios or videos
+
+- Finance Fraud Detection: Develop advanced fraud detection algorithms leveraging financial data analysis.
+
+- Recommender System: Contribute to personalized recommendation systems, enhancing user experiences across platforms.
+
+- Sentiment Analysis: Explore sentiment analysis to extract insights from textual data, shaping user sentiment understanding.
+
+- Chatbots: Engage in intelligent chatbot development, revolutionizing customer interactions and support.
+
+- Image/Audio Video Classification: Push boundaries with multimedia technology by working on image and audio video classification projects.
+
+- Text Analysis: Uncover hidden patterns in textual data through sophisticated text analysis techniques.
+
+
+
+Roles & Responsibilities:
+
+- Collaborate with our esteemed AI & data science experts to collect, clean, and analyze extensive datasets, honing skills in data preprocessing and visualization.
+
+- Contribute to the development of predictive models and algorithms, employing cutting-edge machine learning techniques to solve real-world challenges.
+
+- Work closely with team members to design, implement, and evaluate experiments, fostering a collaborative and innovative environment.
+
+- Stay updated with the latest industry trends and best practices in data science, applying newfound knowledge to enhance project outcomes.
+
+Qualifications:
+
+- Currently pursuing any degree showcasing a strong commitment to continuous learning and professional growth.
+
+- Exceptional written and verbal communication skills, vital for effective collaboration and articulation of complex ideas.
+
+- Demonstrated ability to work both independently and as part of a cohesive team, highlighting adaptability and strong teamwork capabilities.
+
+
+
+Benefits:
+
+
+
+This internship offers an exciting opportunity to gain practical experience in AI, Data Science, DevOps, and Cloud technologies, working on impactful projects and contributing to the development of innovative solutions. If you are enthusiastic about technology and eager to learn, we encourage you to apply and join our team.
+
+
+
+Note:
+
+This position is part of our unpaid AI & Data Science Study and Internship Program. Upon application, our team will contact you to proceed with the application details and joining process.
+
+
+
+Location:
+
+Remote: Europe, Middle East and Africa
+]
+
+
+
+[
+EY Türkiye - TTT - Data Analyst Intern- job post
+EY
+3.9
+5 üzerinden 3.9 yıldız
+Türkiye
+Şirketin web sitesine gitmeden önce bir Indeed hesabı oluştur.
+İş detayları
+İş ilanı bilgileri ile profilinin uyumlu olduğu noktalar.
+İş türü
+Staj
+&nbsp;
+Konum
+Türkiye
+&nbsp;
+Tam İş Tanımı
+EY is a global leader in Assurance, Tax, Consulting and SaT (Strategy and Transactions) services.
+
+The insights and quality services we deliver help build trust and confidence in the capital markets and in economies the world over. We develop outstanding leaders who team to deliver on our promises to all of our stakeholders. In so doing, we play a critical role in building a better working world for our people, for our clients and for our communities.
+
+Our 395 000 people, in more than 150 countries, are united by our shared values, which inspire our people worldwide and guide them to do the right thing, and our commitment to quality, which is embedded in who we are and everything we do. Our offices around the world use the same methodology and are linked through an integrated technology platform to enable instantaneous communication and collaboration among team members, regardless of location. As a member of EY Global, in Turkey we operate in 6 offices located in Istanbul, Ankara, Bursa and Izmir, Adana with more than 2000 people for 30 years.
+
+We are seeking for Data Analyst Intern to join our Tax–Tax Technology and Transformation (TTT) Services team in Istanbul with the following qualifications;
+
+Strong academic background; a Bachelor’s student or a Bachelor’s or Master’s degree in Engineering, Science Faculty, Business Informatics or equivalent departments,
+Proficiency with Python or Java or C Sharp (C#),
+Analytical skills and competence in recognizing cause and effect relationships and inquisitive approach,
+Effective communication skills and planning,
+Proficiency with data analytics subjects,
+Enthusiasm in taking responsibility for the team and his/her superiors,
+Having applied training on visualization tools such as PowerBI or Tableau,
+Relational database design and SQL knowledge,
+Acknowledge of NoSQL is a plus,
+Successful at comparing tables or data and noticing inconsistencies,
+English language skills - excellent written and verbal communication,
+No travel restrictions.
+JOB DESCRIPTION
+
+In this role, you will be responsible of,
+
+Improving clients' tax and financial processes with technology solutions.
+Provide Technology-oriented consulting services to support the clients for tedious tasks.
+Assist with the production of leading practice tax software solutions, and support and automate internal and external operations of multinational tax departments.
+Understand Robotic Process Automation solutions.
+Understand of XML and/or JSON format.
+Use of Big Data Analytics and Business Intelligence tools.
+Work effectively as a team member, sharing and taking responsibility, providing support, maintaining communication, and updating senior team members on progress.
+Assist in preparing reports and schedules that will be delivered to clients and regulators.
+Develop and maintain productive working relationships with the team and client.
+&nbsp;
+]
+
+[
+About the job
+Outlier helps the world’s most innovative companies improve their AI models by providing human feedback. Are you an experienced software engineer who would like to lend your coding expertise to train AI models?
+
+We partner with organizations to train AI large language models, helping cutting-edge generative AI models write better code. Projects typically include discrete, highly variable problems that involve engaging with these models as they learn to code. There is no requirement for previous AI experience.
+
+About the opportunity:
+
+Outlier is looking for talented coders to help train generative artificial intelligence models
+This freelance opportunity is remote and hours are flexible, so you can work whenever is best for you
+
+You may contribute your expertise by…
+
+Crafting and answering questions related to computer science in order to help train AI models
+Evaluating and ranking code generated by AI models
+
+Examples of desirable expertise:
+
+Currently enrolled in or completed a bachelor's degree or higher in computer science at a selective institution
+Proficiency working with one or more of the the following languages: Java, Python, JavaScript / TypeScript, C++, Swift, and Verilog
+Ability to articulate complex concepts fluently in Turkish 
+Excellent attention to detail, including grammar, punctuation, and style guidelines
+
+Payment:
+
+Currently, pay rates for core project work by coding experts range from USD $16 to $33 per hour.
+Rates vary based on expertise, skills assessment, location, project need, and other factors. For example, higher rates may be offered to PhDs. For non-core work, such as during initial project onboarding or project overtime phases, lower rates may apply. Certain projects offer incentive payments. Please review the payment terms for each project.
+
+
+]
+
+
+[
+About the job
+Refonte is a leading IT corporation globally recognized for its expertise in providing top-notch IT and Ed-tech services. Specializing in Artificial intelligence (AI), digital marketing, data science, data analytics, UI-UX design, web development, and app development, we are dedicated to innovation, excellence, and empowering talents worldwide.
+
+
+
+Job Title: AI, Data Science, DevOps, and Cloud Intern
+
+
+
+Learn More: https://refontelearning.com/
+
+
+
+Benefits:
+
+This internship offers an exciting opportunity to gain practical experience in AI, Data Science, DevOps, and Cloud technologies, working on impactful projects and contributing to the development of innovative solutions. If you are enthusiastic about technology and eager to learn, we encourage you to apply and join our team.
+
+
+
+Job Summary:
+
+
+
+Refonte Learning is seeking enthusiastic individuals for our prestigious AI & Data Science Study and Internship Program. This intensive initiative offers a unique opportunity to collaborate closely with our seasoned AI & data science team on diverse and impactful projects.
+
+
+
+Refonte Learning is seeking enthusiastic individuals who are looking to learn AI & Data Science from beginning to advanced level while also working on live projects globally. RGTIP (Refonte Global Training & Internship Program) is designed as a manner that offers you to work in a flexible work environment but also offers working with people in a global team from Oceania, Asia, Europe and American continents.
+
+
+
+Job Description:
+
+We are excited to offer an internship opportunity for individuals passionate about the convergence of AI, Data Science, DevOps, and Cloud technologies. As an AI, Data Science, DevOps, and Cloud Intern, you will have the unique opportunity to gain hands-on experience in these dynamic and interconnected fields, working on innovative projects and collaborating with experienced professionals.
+
+
+
+Responsibilities:
+
+Collaborate with cross-functional teams to develop, deploy, and maintain AI-driven solutions.
+Assist in collecting, cleaning, and analyzing data from various sources to derive actionable insights.
+Contribute to the design and implementation of scalable data pipelines for model training and deployment.
+Support the integration of machine learning models into production systems using DevOps best practices.
+Participate in designing and optimizing CI/CD pipelines for continuous integration, testing, and deployment of AI applications on cloud platforms.
+Assist in infrastructure provisioning, configuration, and monitoring using cloud services such as AWS, Azure, or Google Cloud.
+Work closely with data scientists and engineers to understand business requirements and translate them into technical solutions.
+Research and experiment with emerging technologies and tools in AI, Data Science, DevOps, and Cloud domains.
+Collaborate on documentation efforts to ensure knowledge sharing and best practices across the team.
+
+
+Projects You Will Work On:
+
+- Multi Cloud AI Infrastructure Configuration, Automation and Deployment
+
+- Full Stack AI DevOps & Development
+
+- Generative AI model, Large Language Models and Foundations models to transform input to output.
+
+NB: Input can be text, images, audios or videos; Output can also be text, images, audios or videos
+
+- Finance Fraud Detection: Develop advanced fraud detection algorithms leveraging financial data analysis.
+
+- Recommender System: Contribute to personalized recommendation systems, enhancing user experiences across platforms.
+
+- Sentiment Analysis: Explore sentiment analysis to extract insights from textual data, shaping user sentiment understanding.
+
+- Chatbots: Engage in intelligent chatbot development, revolutionizing customer interactions and support.
+
+- Image/Audio Video Classification: Push boundaries with multimedia technology by working on image and audio video classification projects.
+
+- Text Analysis: Uncover hidden patterns in textual data through sophisticated text analysis techniques.
+
+
+
+Roles & Responsibilities:
+
+- Collaborate with our esteemed AI & data science experts to collect, clean, and analyze extensive datasets, honing skills in data preprocessing and visualization.
+
+- Contribute to the development of predictive models and algorithms, employing cutting-edge machine learning techniques to solve real-world challenges.
+
+- Work closely with team members to design, implement, and evaluate experiments, fostering a collaborative and innovative environment.
+
+- Stay updated with the latest industry trends and best practices in data science, applying newfound knowledge to enhance project outcomes.
+
+Qualifications:
+
+- Currently pursuing any degree showcasing a strong commitment to continuous learning and professional growth.
+
+- Exceptional written and verbal communication skills, vital for effective collaboration and articulation of complex ideas.
+
+- Demonstrated ability to work both independently and as part of a cohesive team, highlighting adaptability and strong teamwork capabilities.
+
+
+
+Benefits:
+
+
+
+This internship offers an exciting opportunity to gain practical experience in AI, Data Science, DevOps, and Cloud technologies, working on impactful projects and contributing to the development of innovative solutions. If you are enthusiastic about technology and eager to learn, we encourage you to apply and join our team.
+
+
+
+Note:
+
+This position is part of our unpaid AI & Data Science Study and Internship Program. Upon application, our team will contact you to proceed with the application details and joining process.
+
+
+
+Learn More: https://refontelearning.com/
+
+
+
+Location:
+
+Remote: Türkiye
+
+
+
+Thank you for considering Refonte Infini Private Limited for your professional development in the field of data science. We look forward to welcoming you to our dynamic team.
+]
+
+
+[
+Coding Expertise for AI Training (Turkish)
+Türkiye · 1 day ago · Over 100 people clicked apply
+
+Remote
+ Full-time
+Matches your job preferences, job type is Full-time.
+
+Apply
+
+Save
+Save Coding Expertise for AI Training (Turkish) at Outlier
+Coding Expertise for AI Training (Turkish)
+Outlier · Türkiye (Remote)
+
+Apply
+
+Save
+Save Coding Expertise for AI Training (Turkish) at Outlier
+Show more options
+How your profile and resume fit this job
+Get AI-powered advice on this job and more exclusive features with Premium. Try Premium for TL0
+
+
+
+Tailor my resume to this job
+
+Am I a good fit for this job?
+
+How can I best position myself for this job?
+
+People you can reach out to
+
+
+
+Erkut and others in your network
+
+Show all
+About the job
+Outlier helps the world’s most innovative companies improve their AI models by providing human feedback. Are you an experienced software engineer who would like to lend your coding expertise to train AI models?
+
+We partner with organizations to train AI large language models, helping cutting-edge generative AI models write better code. Projects typically include discrete, highly variable problems that involve engaging with these models as they learn to code. There is no requirement for previous AI experience.
+
+About the opportunity:
+
+Outlier is looking for talented coders to help train generative artificial intelligence models
+This freelance opportunity is remote and hours are flexible, so you can work whenever is best for you
+
+You may contribute your expertise by…
+
+Crafting and answering questions related to computer science in order to help train AI models
+Evaluating and ranking code generated by AI models
+
+Examples of desirable expertise:
+
+Currently enrolled in or completed a bachelor's degree or higher in computer science at a selective institution
+Proficiency working with one or more of the the following languages: Java, Python, JavaScript / TypeScript, C++, Swift, and Verilog
+Ability to articulate complex concepts fluently in Turkish 
+Excellent attention to detail, including grammar, punctuation, and style guidelines
+
+Payment:
+
+Currently, pay rates for core project work by coding experts range from USD $16 to $33 per hour.
+Rates vary based on expertise, skills assessment, location, project need, and other factors. For example, higher rates may be offered to PhDs. For non-core work, such as during initial project onboarding or project overtime phases, lower rates may apply. Certain projects offer incentive payments. Please review the payment terms for each project.
+
+
+]

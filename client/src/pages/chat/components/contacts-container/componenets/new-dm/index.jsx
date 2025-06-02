@@ -28,6 +28,7 @@ const NewDM = () => {
   const { setSelectedChatType, setSelectedChatData } = useAppStore();
   const [openNewContactModal, setOpenNewContactModal] = useState(false);
   const [searchedContacts, setSearchedContacts] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
 
   const searchContacts = async (searchTerm) => {
     try {
@@ -49,10 +50,14 @@ const NewDM = () => {
   };
 
   const selectNewContact = (contact) => {
-    setOpenNewContactModal(false);
-    setSelectedChatType("contact");
-    setSelectedChatData(contact);
-    setSearchedContacts([]);
+    setSelectedId(contact._id);
+    setTimeout(() => {
+      setOpenNewContactModal(false);
+      setSelectedChatType("contact");
+      setSelectedChatData(contact);
+      setSearchedContacts([]);
+      setSelectedId(null);
+    }, 350);
   };
 
   return (
@@ -61,7 +66,7 @@ const NewDM = () => {
         <Tooltip>
           <TooltipTrigger>
             <FaPlus
-              className="text-neutral-400 font-light text-opacity-90 text-start hover :text-neutral-100 cursor-pointer transition-all duration-300"
+              className="text-neutral-400 font-light text-opacity-90 text-start hover:text-neutral-100 cursor-pointer transition-all duration-300 text-2xl"
               onClick={() => setOpenNewContactModal(true)}
             ></FaPlus>
           </TooltipTrigger>
@@ -71,58 +76,53 @@ const NewDM = () => {
         </Tooltip>
       </TooltipProvider>
       <Dialog open={openNewContactModal} onOpenChange={setOpenNewContactModal}>
-        <DialogContent className="bg-[#181920] border-none text-white w-[400px] h-[400px] flex flex-col">
+        <DialogContent className="bg-[#181920] border-none text-white w-[420px] max-w-full flex flex-col gap-2">
           <DialogHeader>
-            <DialogTitle>lütfen bir kişi seçiniz</DialogTitle>
-            <DialogDescription></DialogDescription>
+            <DialogTitle className="text-2xl font-bold text-purple-400 mb-1">Yeni Mesaj</DialogTitle>
+            <DialogDescription className="text-fuchsia-200/80 mb-2">Bir kullanıcı arayın ve seçin.</DialogDescription>
           </DialogHeader>
           <div>
             <Input
               placeholder="Kullanıcı Ara"
-              className="rounded-lg p-6 bg-[#2c2e3b] border-none"
+              className="rounded-xl p-4 bg-[#2c2e3b] border-none text-lg focus:ring-2 focus:ring-fuchsia-500"
               onChange={(e) => searchContacts(e.target.value)}
             />
           </div>
           {searchedContacts.length > 0 && (
             <ScrollArea className="h-[250px]">
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3">
                 {searchedContacts.map((contact) => (
                   <div
                     key={contact._id}
-                    className="flex gap-3 items-center cursor-pointer"
+                    className={`flex gap-4 items-center cursor-pointer rounded-xl p-3 transition-all duration-200 border border-transparent hover:border-fuchsia-500 bg-[#23243a]/60 hover:bg-[#2c2e3b] shadow-sm ${selectedId === contact._id ? 'scale-95 bg-fuchsia-700/20 border-fuchsia-500' : ''}`}
                     onClick={() => selectNewContact(contact)}
                   >
-                    <div className="w-12 h-12 relative">
-                      <Avatar className="h-12 w-12 md:h-48 md:w-48 rounded-full overflow-hidden">
-                        {contact.image ? (
-                          <AvatarImage
-                            src={`${HOST}/${contact.image}`}
-                            alt="profile"
-                            className="object-cover w-full h-full bg-black rounded-full"
-                          />
-                        ) : (
-                          <div
-                            className={`uppercase h-12 w-12 text-lg  flex items-center justify-center ${getColor(
-                              contact.color
-                            )}`}
-                          >
-                            {contact.firstName &&
-                            contact.firstName.trim() !== "" // firstName'in var olup olmadığını kontrol et
-                              ? contact.firstName.split(" ").shift()
-                              : contact.email && contact.email.trim() !== "" // Eğer firstName yoksa, email kontrol et
-                              ? contact.email.split(" ").shift()
-                              : ""}
-                          </div>
-                        )}
-                      </Avatar>
-                    </div>
+                    <Avatar className="h-12 w-12 rounded-full overflow-hidden border-2 border-fuchsia-500">
+                      {contact.image ? (
+                        <AvatarImage
+                          src={`${HOST}/${contact.image}`}
+                          alt="profile"
+                          className="object-cover w-full h-full bg-black rounded-full"
+                        />
+                      ) : (
+                        <div
+                          className={`uppercase h-12 w-12 text-lg flex items-center justify-center ${getColor(contact.color)}`}
+                        >
+                          {contact.firstName && contact.firstName.trim() !== ""
+                            ? contact.firstName.charAt(0)
+                            : contact.email && contact.email.trim() !== ""
+                            ? contact.email.charAt(0)
+                            : ""}
+                        </div>
+                      )}
+                    </Avatar>
                     <div className="flex flex-col">
-                      <span>
+                      <span className="text-base font-semibold">
                         {contact.firstName && contact.lastName
                           ? `${contact.firstName} ${contact.lastName}`
                           : contact.email}
                       </span>
-                      <span className="text-xs">{contact.email} </span>
+                      <span className="text-xs text-fuchsia-200/80">{contact.email}</span>
                     </div>
                   </div>
                 ))}

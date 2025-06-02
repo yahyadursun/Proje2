@@ -12,7 +12,7 @@ const messageSchema = new mongoose.Schema({
   },
   messageType: {
     type: String,
-    enum: ["text", "file"],
+    enum: ["text", "file", "voice"],
     required: true,
   },
   content: {
@@ -34,6 +34,11 @@ const messageSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  deletedBy: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Users",
+    default: [],
+  }],
 });
 
 const Message = mongoose.model("Messages", messageSchema);
